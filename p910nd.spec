@@ -1,4 +1,5 @@
-Summary:	Tiny non-spooling printer daemon.
+Summary:	Tiny non-spooling printer daemon
+Summary(pl):	Ma³y demon wydruków bez kolejkowania
 Name:		p910nd
 Version:	0.7
 Release:	0.1
@@ -9,16 +10,22 @@ Source0:	http://etherboot.sourceforge.net/p910nd/%{name}-%{version}.tar.bz2
 #Source0-md5:	7bf752532d26c9106f8039db95df3a6b
 Source1:	%{name}.init
 Patch0:		%{name}-makefile.patch
-URL:		http://etherboot.sourceforge.net/p910nd
-BuildArch:	i386
-#Icon:		.p910nd.xpm
+URL:		http://etherboot.sourceforge.net/p910nd/
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
+# why???
+BuildArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 Tiny non-spooling printer daemon for Linux hosts. Accepts data over a
 TCP network connection from a spooling host. Useful on diskless X
 terminals with local printer.
+
+%description -l pl
+Ma³y demon wydruków bez kolejkowania dla komputerów z Linuksem.
+Przyjmuje dane po po³±czeniu sieciowym TCP z komputera z trzymaj±cego
+kolejkê. Przydatny na bezdyskowych X-terminalach z lokaln± drukark±.
 
 %prep
 %setup -q 
@@ -35,8 +42,11 @@ install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_sbindir},%{_libdir}/p910nd,%{_man
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/p910nd
 install p910nd $RPM_BUILD_ROOT%{_sbindir}
-install *.pl $RPM_BUILD_ROOT%{_libdir}/p910nd/
-install p910nd.8 $RPM_BUILD_ROOT%{_mandir}/man8/
+install *.pl $RPM_BUILD_ROOT%{_libdir}/p910nd
+install p910nd.8 $RPM_BUILD_ROOT%{_mandir}/man8
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add p910nd
@@ -53,9 +63,6 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del p910nd
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
