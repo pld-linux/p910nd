@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# p910nd	Start/Stop p910nd daemon.
+#
+# chkconfig:	2345 11 89
+# description:	This shell script takes care of starting and stopping \
+#		p910nd (port 9100+n printer daemon) \
+#		This script only controls the one on port 9101. \
+#		You can start others if you wish.
+#
+# processname:	p910nd
+# config:	/etc/sysconfig/p910nd
+
+# Source function library
+ /etc/rc.d/init.d/functions
+
+P910ND_PRINTERS="0" # 0 for lp0, 1 for lp1 and 2 for lp2
+P910ND_0_OPTIONS="" # for lp0
+P910ND_1_OPTIONS="-b" # ...etc
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/p910nd ] && . /etc/sysconfig/p910nd
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	for i in $P910ND_PRINTERS; do
+		if [ ! -f /var/lock/subsys/p910${i}d ]; then
+		
+			msg_starting "p910${i}d"
+			OPTIONS="\$P910ND_${i}_OPTIONS"
+			OPTIONS=`eval echo $OPTIONS`
+			daemon p910nd ${OPTIONS} ${i}
+			RETVAL=$?
+			[ $RETVAL -eq 0 ] && touch /var/lock/subsys/p910${i}d
+			unset OPTIONS
+			
+		else
+			msg_already_running "p910${i}d"
+		fi
+	done
+	;;
+  stop)
+	# Stop daemons.
+	for i in $P910ND_PRINTERS; do
+		if [ -f /var/lock/subsys/p910${i}d ]; then
+			msg_stopping "p910${i}d"
+			killproc "p910${i}d"
+			rm -f /var/lock/subsys/p910${i}d
+		else
+			msg_not_running "p910${i}d"
+		fi	
+	done	
+	;;
+  status)
+    for i in $P910ND_PRINTERS; do
+		status p910${i}d
+	done
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  *)
+	echo "Usage: p910nd {start|stop|restart|status}"
+	exit 1
+esac
+unset i
+
+exit 0
