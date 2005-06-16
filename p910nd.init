@@ -12,7 +12,7 @@
 # config:	/etc/sysconfig/p910nd
 
 # Source function library
- /etc/rc.d/init.d/functions
+. /etc/rc.d/init.d/functions
 
 P910ND_PRINTERS="0" # 0 for lp0, 1 for lp1 and 2 for lp2
 P910ND_0_OPTIONS="" # for lp0
