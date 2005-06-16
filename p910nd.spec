@@ -2,7 +2,7 @@ Summary:	Tiny non-spooling printer daemon
 Summary(pl):	Ma³y demon wydruków bez kolejkowania
 Name:		p910nd
 Version:	0.7
-Release:	0.1
+Release:	1
 License:	GPL
 Vendor:		Etherboot project
 Group:		Networking/Daemons
@@ -13,8 +13,6 @@ Patch0:		%{name}-makefile.patch
 URL:		http://etherboot.sourceforge.net/p910nd/
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
-# why???
-BuildArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
