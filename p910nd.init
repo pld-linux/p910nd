@@ -27,7 +27,6 @@ case "$1" in
 	# Start daemons.
 	for i in $P910ND_PRINTERS; do
 		if [ ! -f /var/lock/subsys/p910${i}d ]; then
-		
 			msg_starting "p910${i}d"
 			OPTIONS="\$P910ND_${i}_OPTIONS"
 			OPTIONS=`eval echo $OPTIONS`
@@ -35,7 +34,6 @@ case "$1" in
 			RETVAL=$?
 			[ $RETVAL -eq 0 ] && touch /var/lock/subsys/p910${i}d
 			unset OPTIONS
-			
 		else
 			msg_already_running "p910${i}d"
 		fi
@@ -50,8 +48,8 @@ case "$1" in
 			rm -f /var/lock/subsys/p910${i}d
 		else
 			msg_not_running "p910${i}d"
-		fi	
-	done	
+		fi
+	done
 	;;
   status)
     for i in $P910ND_PRINTERS; do
