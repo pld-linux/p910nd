@@ -1,5 +1,5 @@
 Summary:	Tiny non-spooling printer daemon
-Summary(pl):	Ma³y demon wydruków bez kolejkowania
+Summary(pl.UTF-8):   MaÅ‚y demon wydrukÃ³w bez kolejkowania
 Name:		p910nd
 Version:	0.7
 Release:	1
@@ -20,10 +20,10 @@ Tiny non-spooling printer daemon for Linux hosts. Accepts data over a
 TCP network connection from a spooling host. Useful on diskless X
 terminals with local printer.
 
-%description -l pl
-Ma³y demon wydruków bez kolejkowania dla komputerów z Linuksem.
-Przyjmuje dane po po³±czeniu sieciowym TCP z komputera z trzymaj±cego
-kolejkê. Przydatny na bezdyskowych X-terminalach z lokaln± drukark±.
+%description -l pl.UTF-8
+MaÅ‚y demon wydrukÃ³w bez kolejkowania dla komputerÃ³w z Linuksem.
+Przyjmuje dane po poÅ‚Ä…czeniu sieciowym TCP z komputera z trzymajÄ…cego
+kolejkÄ™. Przydatny na bezdyskowych X-terminalach z lokalnÄ… drukarkÄ….
 
 %prep
 %setup -q 
