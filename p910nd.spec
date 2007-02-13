@@ -1,5 +1,5 @@
 Summary:	Tiny non-spooling printer daemon
-Summary(pl.UTF-8):   Mały demon wydruków bez kolejkowania
+Summary(pl.UTF-8):	Mały demon wydruków bez kolejkowania
 Name:		p910nd
 Version:	0.7
 Release:	1
