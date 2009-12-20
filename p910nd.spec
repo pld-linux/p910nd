@@ -1,18 +1,16 @@
 Summary:	Tiny non-spooling printer daemon
 Summary(pl.UTF-8):	Mały demon wydruków bez kolejkowania
 Name:		p910nd
-Version:	0.7
+Version:	0.93
 Release:	1
 License:	GPL
-Vendor:		Etherboot project
 Group:		Networking/Daemons
-Source0:	http://etherboot.sourceforge.net/p910nd/%{name}-%{version}.tar.bz2
-#Source0-md5:	7bf752532d26c9106f8039db95df3a6b
+Source0:	http://downloads.sourceforge.net/p910nd/%{name}-%{version}.tar.bz2
+# Source0-md5:	f668eace7f424953c3aa48afcb34c62b
 Source1:	%{name}.init
-Patch0:		%{name}-makefile.patch
-URL:		http://etherboot.sourceforge.net/p910nd/
-PreReq:		rc-scripts
+URL:		http://p910nd.sourceforge.net/
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,7 +25,6 @@ kolejkę. Przydatny na bezdyskowych X-terminalach z lokalną drukarką.
 
 %prep
 %setup -q 
-%patch0 -p0
 
 %build
 %{__make} \
